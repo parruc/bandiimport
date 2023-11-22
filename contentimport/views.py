@@ -1,16 +1,18 @@
-from App.config import getConfiguration
-from bs4 import BeautifulSoup
-from collective.exportimport.fix_html import fix_html_in_content_fields
-from collective.exportimport.fix_html import fix_html_in_portlets
-from contentimport.interfaces import IContentimportLayer
 from logging import getLogger
 from pathlib import Path
+
+import transaction
+from App.config import getConfiguration
+from bs4 import BeautifulSoup
+from collective.exportimport.fix_html import (fix_html_in_content_fields,
+                                              fix_html_in_portlets)
 from plone import api
+from plone.api.exc import InvalidParameterError
 from Products.CMFPlone.utils import get_installer
 from Products.Five import BrowserView
 from zope.interface import alsoProvides
 
-import transaction
+from contentimport.interfaces import IContentimportLayer
 
 logger = getLogger(__name__)
 
@@ -43,8 +45,8 @@ class ImportAll(BrowserView):
         # import content
         view = api.content.get_view("import_content", portal, request)
         request.form["form.submitted"] = True
-        request.form["commit"] = 500
-        view(server_file="Plone.json", return_json=True)
+        request.form["commit"] = 1000
+        view(server_file="bandi.json", return_json=True)
         transaction.commit()
 
         other_imports = [
@@ -117,8 +119,10 @@ def img_variant_fixer(text, obj=None):
     """Set image-variants"""
     if not text:
         return text
-
-    picture_variants = api.portal.get_registry_record("plone.picture_variants")
+    try:
+        picture_variants = api.portal.get_registry_record("plone.picture_variants")
+    except InvalidParameterError:
+        return text
     scale_variant_mapping = {k: v["sourceset"][0]["scale"] for k, v in picture_variants.items()}
     scale_variant_mapping["thumb"] = "mini"
     fallback_variant = "preview"

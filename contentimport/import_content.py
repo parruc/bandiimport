@@ -1,11 +1,11 @@
+import json
+import logging
+import os
+
+import transaction
 from App.config import getConfiguration
 from collective.exportimport.import_content import ImportContent
 from plone import api
-
-import logging
-import json
-import os
-import transaction
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ CUSTOMVIEWFIELDS_MAPPING = {
 class CustomImportContent(ImportContent):
 
     DROP_PATHS = []
-
+    items_without_parent = None
     DROP_UIDS = []
 
     def start(self):

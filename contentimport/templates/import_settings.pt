@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="collective.exportimport"
+      metal:use-macro="context/main_template/macros/master">
+
+<div metal:fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+      <h1 class="documentFirstHeading" i18n:translate="">Import registry</h1>
+
+      <p class="documentDescription" i18n:translate="">Here you can upload a json-file.</p>
+
+        <form action="@@import_translations" tal:attributes="action request/URL" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="jsonfile"/><br/>
+            </div>
+            <div class="formControls" class="form-group">
+                <button class="btn btn-primary submit-widget button-field context"
+                        type="submit" name="form.submitted" value="Import" i18n:attributes="value" i18n:translate="">Import
+                </button>
+            </div>
+        </form>
+
+        <div metal:use-macro="context/@@exportimport_links/links">
+          Links to all exports and imports
+        </div>
+
+        <div>
+          <h3 i18n:translate="">Help</h3>
+          <p i18n:translate="">Here is a example for the expected format. This is the format created by the registry export.</p>
+          <pre>
+    {
+        "plone.allowed_sizes": [
+            "large 768:768",
+            "preview 400:400",
+            "mini 200:200",
+            "thumb 128:128",
+            "tile 64:64",
+            "icon 32:32",
+            "listing 16:16"
+        ],
+        "plone.email_from_address": null,
+        "plone.email_from_name": null,
+        "plone.picture_variants": null,
+        "plone.quality": 88,
+        "plone.site_title": "Universit\u00e0 di Bologna",
+        "plone.smtp_host": "localhost",
+        "plone.smtp_pass": null,
+        "plone.smtp_port": 25,
+    }
+          </pre>
+        </div>
+
+    </tal:main-macro>
+</div>
+
+</html>

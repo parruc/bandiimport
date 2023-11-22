@@ -5,6 +5,14 @@
     xmlns:zcml="http://namespaces.zope.org/zcml"
     >
 
+  <browser:page
+      name="exportimport_links"
+      for="zope.interface.Interface"
+      template="templates/links.pt"
+      layer="contentimport.interfaces.IContentimportLayer"
+      permission="cmf.ManagePortal"
+      />
+
   <genericsetup:registerProfile
       name="default"
       title="Custom content-import using collective.exportimport"
@@ -26,6 +34,15 @@
       for="zope.interface.Interface"
       class=".import_content.CustomImportContent"
       permission="cmf.ManagePortal"
+      layer="contentimport.interfaces.IContentimportLayer"
+      />
+
+  <browser:page
+      name="import_settings"
+      for="zope.interface.Interface"
+      class=".import_settings.ImportSettings"
+      permission="cmf.ManagePortal"
+      template="templates/import_settings.pt"
       layer="contentimport.interfaces.IContentimportLayer"
       />
 
