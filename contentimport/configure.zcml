@@ -38,6 +38,30 @@
       />
 
   <browser:page
+      name="import_ordering"
+      for="zope.interface.Interface"
+      class=".import_ordering.ImportOrdering"
+      permission="cmf.ManagePortal"
+      layer="contentimport.interfaces.IContentimportLayer"
+      />
+
+  <browser:page
+      name="import_localroles"
+      for="zope.interface.Interface"
+      class=".import_localroles.ImportLocalRoles"
+      permission="cmf.ManagePortal"
+      layer="contentimport.interfaces.IContentimportLayer"
+      />
+
+  <browser:page
+      name="import_defaultpages"
+      for="zope.interface.Interface"
+      class=".import_defaultpages.ImportDefaultPages"
+      permission="cmf.ManagePortal"
+      layer="contentimport.interfaces.IContentimportLayer"
+      />
+
+  <browser:page
       name="import_settings"
       for="zope.interface.Interface"
       class=".import_settings.ImportSettings"

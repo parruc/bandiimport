@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='contentimport',
+    name='contentimport.bandi',
     version='0.2.dev0',
     description='Custom import based on collective.exportimport',
     url='https://github.com/starzel/contentimport',

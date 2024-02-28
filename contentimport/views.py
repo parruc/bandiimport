@@ -16,7 +16,7 @@ from contentimport.interfaces import IContentimportLayer
 
 logger = getLogger(__name__)
 
-DEFAULT_ADDONS = []
+DEFAULT_ADDONS = ["unibo.bandi", "unibotheme.bandi", "unibo.cookiebanner", "plone.formwidget.recaptcha"]
 
 
 class ImportAll(BrowserView):
@@ -52,15 +52,15 @@ class ImportAll(BrowserView):
         other_imports = [
             "relations",
             "members",
-            "translations",
             "localroles",
             "ordering",
             "defaultpages",
-            "discussion",
-            "portlets",
             "redirects",
         ]
         for name in other_imports:
+            logger.info("---------------------------------------------------")
+            logger.info(f"-----------------Importing {name}------------------")
+            logger.info("---------------------------------------------------")
             view = api.content.get_view(f"import_{name}", portal, request)
             path = Path(directory) / f"export_{name}.json"
             if path.exists():

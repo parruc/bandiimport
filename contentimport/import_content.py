@@ -27,38 +27,11 @@ PORTAL_TYPE_MAPPING = {
 
 REVIEW_STATE_MAPPING = {}
 
-VERSIONED_TYPES = [
-    "Document",
-    "News Item",
-    "Event",
-    "Link",
-]
+VERSIONED_TYPES = []
 
-IMPORTED_TYPES = [
-    "ContentPanels",
-    "Collection",
-    "Topic",
-    "Document",
-    "Folder",
-    "Link",
-    "File",
-    "Image",
-    "News Item",
-    "Event",
-    "EasyForm",
-]
+IMPORTED_TYPES = []
 
-ALLOWED_TYPES = [
-    "Collection",
-    "Document",
-    "Folder",
-    "Link",
-    "File",
-    "Image",
-    "News Item",
-    "Event",
-    "EasyForm",
-]
+ALLOWED_TYPES = []
 
 CUSTOMVIEWFIELDS_MAPPING = {
     "warnings": None,
@@ -115,8 +88,8 @@ class CustomImportContent(ImportContent):
     def global_dict_hook(self, item):
 
         # Adapt this to your site
-        old_portal_id = "Plone"
-        new_portal_id = "Plone"
+        old_portal_id = "bandi"
+        new_portal_id = "bandi"
 
         if old_portal_id != new_portal_id:
             # This is only relevant for items in the site-root.
